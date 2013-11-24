@@ -1,4 +1,4 @@
-package org.SOFE_4790U.project.group11;
+package project;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;

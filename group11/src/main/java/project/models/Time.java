@@ -1,4 +1,4 @@
-package org.SOFE_4790U.project.group11.models;
+package project.models;
 
 import java.util.Calendar;
 import java.util.TimeZone;

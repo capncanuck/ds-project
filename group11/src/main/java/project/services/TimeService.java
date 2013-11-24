@@ -1,4 +1,4 @@
-package org.SOFE_4790U.project.group11.services;
+package project.services;
 
 import java.util.TimeZone;
 
@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.SOFE_4790U.project.group11.models.Time;
+import project.models.Time;
 
 /**
  * Get the current time
