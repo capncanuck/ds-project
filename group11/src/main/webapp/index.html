@@ -138,7 +138,7 @@
 					use the example REST client below to send a
 					<code>GET</code>
 					request to
-					<code>/group11/api/time</code>
+					<code>/api/time</code>
 					. Then use Eclipse or the Command Line to deploy some changes.
 				</div>
 
@@ -327,9 +327,9 @@
 
 						<h2>Step 3. Makes some changes to the app</h2>
 						<ol>
-							<li>Open <code>src/main/java/org/SOFE_4790U/project/group11/services/TimeService.java</code></li>
+							<li>Open <code>src/main/java/org/SOFE_4790U/project/services/TimeService.java</code></li>
 							<li>To add a new resource path that supports specific time
-								zones (e.g. <code>GET /group11/api/time/est</code> for the time
+								zones (e.g. <code>GET /api/time/est</code> for the time
 								in Eastern Standard Time), add this method: <pre
 									class="prettyprint once language-java">
 @GET
@@ -399,7 +399,7 @@ import java.util.TimeZone;
 
 							<p>You've just cloned, modified, and deployed a brand new
 								app.</p>
-							<a href="#" onclick="openRestClient('/group11/api/time/est');"
+							<a href="#" onclick="openRestClient('/api/time/est');"
 								class="btn btn-primary btn-large">See your changes</a>
 
 							<p style="margin-top: 20px">
@@ -449,11 +449,11 @@ Authentication successful.</pre>
 
 						<h2>Step 4. Makes some changes to the app</h2>
 						<ol>
-							<li>Open <code>src/main/java/org/SOFE_4790U/project/group11/services/TimeService.java</code>
+							<li>Open <code>src/main/java/org/SOFE_4790U/project/services/TimeService.java</code>
 								in your favorite editor.
 							</li>
 							<li>To add a new resource path that supports specific time
-								zones (e.g. <code>GET /group11/api/time/est</code> for the time
+								zones (e.g. <code>GET /api/time/est</code> for the time
 								in Eastern Standard Time), add this method: <pre
 									class="prettyprint once language-java">
 @GET
@@ -482,7 +482,7 @@ import java.util.TimeZone;
 
 							<p>You've just cloned, modified, and deployed a brand new
 								app.</p>
-							<a href="#" onclick="openRestClient('/group11/api/time/est');"
+							<a href="#" onclick="openRestClient('/api/time/est');"
 								class="btn btn-primary btn-large">See your changes</a>
 
 							<p style="margin-top: 20px">
@@ -501,7 +501,7 @@ import java.util.TimeZone;
 							<form class="form-horizontal" class="row-fluid">
 								<fieldset>
 									<label class="control-label search-query" for="rest-url"><strong>URL</strong></label>
-									<input id="rest-url" type="text" value="/group11/api/time">
+									<input id="rest-url" type="text" value="/api/time">
 									<button type="submit" class="btn btn-primary"
 										onclick="sendGetRequest(); return false;">GET</button>
 								</fieldset>
