@@ -12,9 +12,9 @@ Dependancies
 
 Instructions
 ------------
-1. clone to git folder
-2. in eclipse, create new maven project
-3. change the directory to `git/ds-project/group-11`
+1. Clone to git folder
+2. In eclipse, create new maven project
+3. Change the directory to `git/ds-project/group-11`
 4. Run the Main class in `git/ds-project/group-11/project/Main.java` as a Java Application
 5. Home page: <http://localhost:8080>
 6. Example REST URI: <http://localhost:8080/api/time>
