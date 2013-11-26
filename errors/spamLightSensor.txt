@@ -1,0 +1,51 @@
+HTTP ERROR 500
+
+Problem accessing /api/nxt/lightSensor. Reason:
+
+    Server Error
+
+Caused by:
+
+java.lang.ArrayIndexOutOfBoundsException: 3
+    at lejos.nxt.remote.NXTCommand.getInputValues(NXTCommand.java:517)
+    at lejos.nxt.SensorPort.readRawValue(SensorPort.java:111)
+    at lejos.nxt.LightSensor.getLightValue(LightSensor.java:71)
+    at middleware.NXTMiddleware.lightSensor(NXTMiddleware.java:35)
+    at project.services.NXTService.lightSensor(NXTService.java:46)
+    at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+    at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$TypeOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:185)
+    at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+    at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:302)
+    at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+    at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+    at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+    at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+    at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1511)
+    at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1442)
+    at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1391)
+    at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1381)
+    at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+    at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:538)
+    at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:716)
+    at javax.servlet.http.HttpServlet.service(HttpServlet.java:848)
+    at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:681)
+    at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:452)
+    at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:138)
+    at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:564)
+    at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:213)
+    at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1083)
+    at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:379)
+    at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:175)
+    at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1017)
+    at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:136)
+    at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+    at org.eclipse.jetty.server.Server.handle(Server.java:445)
+    at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:260)
+    at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:225)
+    at org.eclipse.jetty.io.AbstractConnection$ReadCallback.run(AbstractConnection.java:358)
+    at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:596)
+    at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:527)
+    at java.lang.Thread.run(Thread.java:744)
