@@ -44,13 +44,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- NXT libraries -->
 		<dependency>
 			<groupId>lejos.nxt</groupId>
 			<artifactId>nxt</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
- 
+
 	<build>
 		<plugins>
 			<plugin>

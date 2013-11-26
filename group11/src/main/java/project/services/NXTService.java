@@ -54,13 +54,4 @@ public class NXTService {
 	public void stop() {
 		this.middleware.stop(MOTOR);
 	}
-
-	/**
-	 * Stop the NXT Motor
-	 */
-	@POST
-	@Path("/postforward")
-	public void postforward() {
-		this.middleware.forward(MOTOR);
-	}
 }
