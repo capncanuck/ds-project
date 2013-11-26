@@ -19,8 +19,7 @@ Instructions
 5. Home page: <http://localhost:8080>
 6. Example REST URI: <http://localhost:8080/api/time>
 7. Add NXT libraries
-  1. Make sure `git/ds-project/lib/src/native/linux/x86_64/libjlibnxt.so` is in your library path like `/usr/lib`
-  2. `sudo ldconfig`
+  1. `cp -r git/ds-project/group-11/lib/native/ ~/.m2/repository/lejos/nxt/nxt/0.0.1-SNAPSHOT/`
 8. While in the same directory as `pom.xml`, run the following commands:
   1. `mvn install:install-file -Dfile=lib/pccomm.jar -DgroupId=lejos.nxt -DartifactId=nxt -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dsources=lib/src/pccomm-src.zip`
   2. `mvn clean install`
