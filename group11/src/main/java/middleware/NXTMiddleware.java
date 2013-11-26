@@ -3,8 +3,7 @@ package middleware;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
-import lejos.pc.comm.NXTCommException;
-import lejos.pc.comm.NXTCommFactory;
+import lejos.nxt.remote.RemoteMotor;
 
 /**
  * Used to communicate with an nxt device
@@ -21,88 +20,65 @@ import lejos.pc.comm.NXTCommFactory;
 public class NXTMiddleware {
 
     /**
-     * the NXT robot's light sensor
+     * 
      */
-    private LightSensor lightSensor;
+    private static final RemoteMotor motor = Motor.A;
 
     /**
-     * Provides an interface to send commands to the NXT Robot
+     * 
+     */
+    private boolean forward;
+
+    /**
+     * 
      */
     public NXTMiddleware() {
-        super();
-
-        try {
-            NXTCommFactory.createNXTComm(NXTCommFactory.USB);
-            this.lightSensor = new LightSensor(SensorPort.S1);
-        } catch (final NXTCommException e) {
-            System.out.println("Error - creating NXT connection");
-        }
-    }
-
-    /**
-     * Move the NXT robot's motor forward
-     * 
-     * @param motorLabel the motor's label ['A' .. 'd']
-     */
-    public void forward(final char motorLabel) {
-        switch (motorLabel) {
-            case 'A':
-                Motor.A.forward();
-                break;
-            case 'B':
-                Motor.B.forward();
-                break;
-            case 'C':
-                Motor.C.forward();
-                break;
-            default:
-        }
-    }
-
-    /**
-     * Move the NXT robot's motor backwards
-     * 
-     * @param motorLabel the motor's label ['A' .. 'd']
-     */
-    public void backward(final char motorLabel) {
-        switch (motorLabel) {
-            case 'A':
-                Motor.A.backward();
-                break;
-            case 'B':
-                Motor.B.backward();
-                break;
-            case 'C':
-                Motor.C.backward();
-                break;
-            default:
-        }
-    }
-
-    /**
-     * Stop the NXT robot's motor
-     * 
-     * @param motorLabel the motor's label ['A' .. 'd']
-     */
-    public void stop(final char motorLabel) {
-        switch (motorLabel) {
-            case 'A':
-                Motor.A.stop();
-                break;
-            case 'B':
-                Motor.B.stop();
-                break;
-            case 'C':
-                Motor.C.stop();
-                break;
-            default:
-        }
+        this.forwards();
     }
 
     /**
      * @return the light value detected by the light sensor
      */
-    public int getLightValue() {
-        return this.lightSensor.getLightValue();
+    public int lightSensor() {
+        return new LightSensor(SensorPort.S1).getLightValue();
+    }
+
+    /**
+     * 
+     */
+    public void forwards() {
+        this.forward = true;
+    }
+
+    /**
+     * 
+     */
+    public void backwards() {
+        this.forward = false;
+    }
+
+    /**
+     * 
+     */
+    public void start() {
+        if (this.forward) {
+            motor.forward();
+        } else {
+            motor.backward();
+        }
+    }
+
+    /**
+     * 
+     */
+    public void stop() {
+        motor.stop();
+    }
+
+    /**
+     * @return
+     */
+    public boolean isForwards() {
+        return this.forward;
     }
 }

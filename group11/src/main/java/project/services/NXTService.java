@@ -1,15 +1,14 @@
 package project.services;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import lejos.pc.comm.NXTCommException;
 import middleware.NXTMiddleware;
-import project.models.Time;
+import project.models.Direction;
+import project.models.Light;
 
 /**
  * @author Khalil Fazal
@@ -20,51 +19,63 @@ import project.models.Time;
  * @studentNumber 100425726
  */
 @Path("nxt")
-@Produces(MediaType.APPLICATION_JSON)
 public class NXTService {
 
-	/**
-	 * The motor that will be controlled
-	 */
-	private static final char MOTOR = 'A';
+    /**
+     * the middleware to the NXT
+     */
+    private final NXTMiddleware middleware;
 
-	/**
-	 * the middleware to the NXT
-	 */
-	private final NXTMiddleware middleware;
+    /**
+     * Create a connection to the middleware
+     * @throws NXTCommException 
+     */
+    public NXTService() throws NXTCommException {
+        this.middleware = new NXTMiddleware();
+    }
 
-	/**
-	 * Create a connection to the middleware
-	 */
-	public NXTService() {
-		this.middleware = new NXTMiddleware();
-	}
+    /**
+     * @return
+     */
+    @POST
+    @Path("/lightSensor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Light lightSensor() {
+        return new Light(this.middleware.lightSensor());
+    }
 
-	/**
-	 * Move the NXT robot motor forwards
-	 */
-	@POST
-	@Path("/forward")
+    /**
+     * Move the NXT robot motor forwards
+     */
+    @POST
+    @Path("/forwards")
+    public void forwards() {
+        this.middleware.forwards();
+    }
 
-	public void forward() {
-		this.middleware.forward(MOTOR);
-	}
+    /**
+     * Move the NXT robot motor backwards
+     */
+    @POST
+    @Path("/backwards")
+    public void backwards() {
+        this.middleware.backwards();
+    }
 
-	/**
-	 * Move the NXT robot motor backwards
-	 */
-	@POST
-	@Path("/backward")
-	public void backward() {
-		this.middleware.backward(MOTOR);
-	}
-	
-	/**
-	 * Stop the NXT Motor
-	 */
-	@POST
-	@Path("/stop")
-	public void stop() {
-		this.middleware.stop(MOTOR);
-	}
+    @POST
+    @Path("/start")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Direction start() {
+        this.middleware.start();
+        return new Direction(this.middleware.isForwards());
+    }
+
+    /**
+     * Stop the NXT Motor
+     */
+    @POST
+    @Path("/stop")
+    public void stop() {
+        this.middleware.stop();
+    }
 }
