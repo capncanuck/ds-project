@@ -1,5 +1,6 @@
 package project.services;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -7,8 +8,9 @@ import javax.ws.rs.core.MediaType;
 
 import lejos.pc.comm.NXTCommException;
 import middleware.NXTMiddleware;
-import project.models.Direction;
+import project.models.Connection;
 import project.models.Light;
+import project.models.Status;
 
 /**
  * @author Khalil Fazal
@@ -37,7 +39,7 @@ public class NXTService {
     /**
      * @return
      */
-    @POST
+    @GET
     @Path("/lightSensor")
     @Produces(MediaType.APPLICATION_JSON)
     public Light lightSensor() {
@@ -64,10 +66,8 @@ public class NXTService {
 
     @POST
     @Path("/start")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Direction start() {
+    public void start() {
         this.middleware.start();
-        return new Direction(this.middleware.isForwards());
     }
 
     /**
@@ -77,5 +77,19 @@ public class NXTService {
     @Path("/stop")
     public void stop() {
         this.middleware.stop();
+    }
+
+    @GET
+    @Path("/status")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Status status() {
+        return new Status(this.middleware.isForwards(), this.middleware.isMoving());
+    }
+
+    @GET
+    @Path("/connection")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Connection connection() {
+        return new Connection(this.middleware.isConnected());
     }
 }

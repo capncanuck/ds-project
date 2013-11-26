@@ -1,9 +1,11 @@
 package middleware;
 
+import lejos.nxt.LCD;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.remote.RemoteMotor;
+import lejos.pc.comm.NXTCommFactory;
 
 /**
  * Used to communicate with an nxt device
@@ -24,17 +26,7 @@ public class NXTMiddleware {
      */
     private static final RemoteMotor motor = Motor.A;
 
-    /**
-     * 
-     */
-    private boolean forward;
-
-    /**
-     * 
-     */
-    public NXTMiddleware() {
-        this.forwards();
-    }
+    private static boolean forward = true;
 
     /**
      * @return the light value detected by the light sensor
@@ -47,21 +39,21 @@ public class NXTMiddleware {
      * 
      */
     public void forwards() {
-        this.forward = true;
+        NXTMiddleware.forward = true;
     }
 
     /**
      * 
      */
     public void backwards() {
-        this.forward = false;
+        NXTMiddleware.forward = false;
     }
 
     /**
      * 
      */
     public void start() {
-        if (this.forward) {
+        if (NXTMiddleware.forward) {
             motor.forward();
         } else {
             motor.backward();
@@ -79,6 +71,25 @@ public class NXTMiddleware {
      * @return
      */
     public boolean isForwards() {
-        return this.forward;
+        return NXTMiddleware.forward;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isMoving() {
+        return motor.isMoving();
+    }
+
+    /**
+     * @return
+     */
+    public boolean isConnected() {
+        try {
+            NXTCommFactory.createNXTComm(NXTCommFactory.USB);
+            return true;
+        } catch (final Exception e) {
+            return false;
+        }
     }
 }
