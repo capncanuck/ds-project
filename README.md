@@ -21,7 +21,6 @@ Instructions
 7. Add NXT libraries
   1. Make sure `git/ds-project/lib/src/native/linux/x86_64/libjlibnxt.so` is in your library path like `/usr/lib`
   2. `sudo ldconfig`
-
 8. While in the same directory as `pom.xml`, run the following commands:
   1. `mvn install:install-file -Dfile=lib/pccomm.jar -DgroupId=lejos.nxt -DartifactId=nxt -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dsources=lib/src/pccomm-src.zip`
   2. `mvn clean install`
