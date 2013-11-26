@@ -154,7 +154,7 @@
 				<div class="tab-content">
 
 					<div id="eclipse-instructions" class="instructions tab-pane active">
-						<a name="using-eclipse"></a>
+						<a id="using-eclipse"></a>
 
 						<div class="alert alert-warn">
 							If you already created this app from the Heroku Eclipse Plugin,
@@ -169,7 +169,7 @@
 						<h2>Step 1.Configure Heroku Eclipse preferences</h2>
 						<ol>
 							<li>Open <code>Eclipse</code><i class="icon-chevron-right"></i>
-							<code>Preferences</code></li>
+								<code>Preferences</code></li>
 							<li>Select <code>Heroku</code></li>
 							<li>Enter your <code>Email</code> and <code>Password</code></li>
 							<li>Click <code>Login</code>. If your login was successful,
@@ -227,7 +227,7 @@
 						<h2>Step 2. Importing this App</h2>
 						<ol>
 							<li>Open <code>File</code><i class="icon-chevron-right"></i>
-							<code>Import</code> and expand the Heroku section
+								<code>Import</code> and expand the Heroku section
 								<div class="modal hide" id="importAppSelect">
 									<div class="modal-header">
 										<a class="close" data-dismiss="modal"><i
@@ -249,8 +249,7 @@
 
 							</li>
 							<li>Select <code>Existing Heroku Application</code><i
-								class="icon-chevron-right"></i>
-							<code>Next</code></li>
+								class="icon-chevron-right"></i> <code>Next</code></li>
 							<li>Select <code>
 									<script>
 										document.write(appname());
@@ -323,14 +322,14 @@
 							</span>
 							</li>
 						</ol>
-						<a name="step3" id="step3"></a>
+						<a id="step3"></a>
 
 						<h2>Step 3. Makes some changes to the app</h2>
 						<ol>
 							<li>Open <code>src/main/java/org/SOFE_4790U/project/services/TimeService.java</code></li>
 							<li>To add a new resource path that supports specific time
-								zones (e.g. <code>GET /api/time/est</code> for the time
-								in Eastern Standard Time), add this method: <pre
+								zones (e.g. <code>GET /api/time/est</code> for the time in
+								Eastern Standard Time), add this method: <pre
 									class="prettyprint once language-java">
 @GET
 @Path("/{timezone}")
@@ -412,7 +411,7 @@ import java.util.TimeZone;
 					<!-- End Eclipse tab-->
 
 					<div id="cli-instructions" class="instructions tab-pane">
-						<a name="using-cli"></a>
+						<a id="using-cli"></a>
 
 						<h2>Step 1. Setup your environment</h2>
 						<ol>
@@ -453,8 +452,8 @@ Authentication successful.</pre>
 								in your favorite editor.
 							</li>
 							<li>To add a new resource path that supports specific time
-								zones (e.g. <code>GET /api/time/est</code> for the time
-								in Eastern Standard Time), add this method: <pre
+								zones (e.g. <code>GET /api/time/est</code> for the time in
+								Eastern Standard Time), add this method: <pre
 									class="prettyprint once language-java">
 @GET
 @Path("/{timezone}")
@@ -533,10 +532,6 @@ import java.util.TimeZone;
 		</div>
 
 
-	</div>
-
-	</div>
-	</div>
 	</div>
 
 	<script src="scripts/jquery.min.js"></script>
