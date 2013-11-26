@@ -1,5 +1,7 @@
 package project.services;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -7,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import middleware.NXTMiddleware;
+import project.models.Time;
 
 /**
  * @author Khalil Fazal
@@ -38,18 +41,28 @@ public class NXTService {
 	}
 
 	/**
-	 * Move the NXT robot forwards
+	 * Move the NXT robot motor forwards
 	 */
-	@GET
+	@POST
 	@Path("/forward")
+
 	public void forward() {
 		this.middleware.forward(MOTOR);
 	}
 
 	/**
+	 * Move the NXT robot motor backwards
+	 */
+	@POST
+	@Path("/backward")
+	public void backward() {
+		this.middleware.backward(MOTOR);
+	}
+	
+	/**
 	 * Stop the NXT Motor
 	 */
-	@GET
+	@POST
 	@Path("/stop")
 	public void stop() {
 		this.middleware.stop(MOTOR);
