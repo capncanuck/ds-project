@@ -2,6 +2,7 @@ package project.services;
 
 import java.util.TimeZone;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -31,8 +32,9 @@ public class TimeService {
      * @param timezone the specified time zone
      * @return the current time at a time zone
      */
-    @POST
+    @GET
     @Path("/{timezone}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Time timezone(@PathParam("timezone") final String timezone) {
         return new Time(TimeZone.getTimeZone(timezone.toUpperCase()));
     }
