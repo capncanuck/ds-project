@@ -23,7 +23,7 @@ public class TimeService {
     /**
      * @return the time at the default time zone.
      */
-    @POST
+    @GET
     public Time defaultZone() {
         return new Time();
     }
