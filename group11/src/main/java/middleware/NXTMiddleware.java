@@ -4,10 +4,10 @@ import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.remote.RemoteMotor;
-import lejos.pc.comm.NXTCommFactory;
 
 /**
  * Used to communicate with an nxt device.
+ * This is a singleton class. 
  *
  * @author Khalil Fazal
  * @studentNumber 100425046
@@ -16,40 +16,39 @@ import lejos.pc.comm.NXTCommFactory;
  * @author Rayhaan Shakeel
  * @studentNumber 100425726
  */
-public class NXTMiddleware {
+public enum NXTMiddleware {
 
     /**
-     * The Constant motor.
+     * The instance.
      */
-    private static final RemoteMotor motor;
+    INSTANCE;
 
     /**
-     * The Constant lightSensor.
+     * The motor.
      */
-    private static final SensorPort lightSensor;
-
-    /**
-     * The motor's current direction.
-     */
-    private static boolean forward;
-
-    static {
-        motor = Motor.A;
-        lightSensor = SensorPort.S1;
-        forward = true;
-    }
+    private final RemoteMotor motor;
 
     /**
      * The lightSensor.
      */
-    private LightSensor ls;
+    private LightSensor sensor;
 
     /**
-     * Start the light sensor.
+     * The motor's current direction.
      */
+    private boolean forward;
+
+    /**
+     * Instantiates a new NXT middleware.
+     */
+    private NXTMiddleware() {
+        this.motor = Motor.A;
+        this.forward = true;
+    }
+
     private void startLightSensor() {
-        if (this.ls == null) {
-            this.ls = new LightSensor(lightSensor);
+        if (this.sensor == null) {
+            this.sensor = new LightSensor(SensorPort.S1);
         }
     }
 
@@ -60,17 +59,8 @@ public class NXTMiddleware {
      */
     public int getLightValue() {
         this.startLightSensor();
-
-        return this.ls.getLightValue();
-    }
-
-    /**
-     * Turn the light sensor off.
-     */
-    public void turnOffFloodlight() {
-        this.startLightSensor();
-
-        this.ls.setFloodlight(false);
+        this.turnOffFloodlight();
+        return this.sensor.getLightValue();
     }
 
     /**
@@ -78,32 +68,48 @@ public class NXTMiddleware {
      */
     public void turnOnFloodlight() {
         this.startLightSensor();
+        this.sensor.setFloodlight(true);
+    }
 
-        this.ls.setFloodlight(true);
+    /**
+    * Turn the light sensor off.
+    */
+    public void turnOffFloodlight() {
+        if (this.sensor != null) {
+            this.sensor.setFloodlight(false);
+        }
     }
 
     /**
      * Forwards.
      */
     public void forwards() {
-        NXTMiddleware.forward = true;
+        if (this.isMoving() && !this.forward) {
+            this.motor.forward();
+        }
+
+        this.forward = true;
     }
 
     /**
      * Backwards.
      */
     public void backwards() {
-        NXTMiddleware.forward = false;
+        if (this.isMoving() && this.forward) {
+            this.motor.backward();
+        }
+
+        this.forward = false;
     }
 
     /**
      * Start.
      */
     public void start() {
-        if (NXTMiddleware.forward) {
-            motor.forward();
+        if (this.forward) {
+            this.motor.forward();
         } else {
-            motor.backward();
+            this.motor.backward();
         }
     }
 
@@ -111,38 +117,24 @@ public class NXTMiddleware {
      * Stop.
      */
     public void stop() {
-        motor.stop();
+        this.motor.stop();
     }
 
     /**
-     * Checks if is forwards.
+     * Checks if the motor is set to forwards.
      *
-     * @return true, if is forwards
+     * @return true, if the motor is set to forwards
      */
     public boolean isForwards() {
-        return NXTMiddleware.forward;
+        return this.forward;
     }
 
     /**
-     * Checks if is moving.
+     * Checks if the motor is moving.
      *
-     * @return true, if is moving
+     * @return true, if the motor is moving
      */
     public boolean isMoving() {
-        return motor.isMoving();
-    }
-
-    /**
-     * Checks if is connected.
-     *
-     * @return true, if is connected
-     */
-    public boolean isConnected() {
-        try {
-            NXTCommFactory.createNXTComm(NXTCommFactory.USB);
-            return true;
-        } catch (final Exception e) {
-            return false;
-        }
+        return this.motor.isMoving();
     }
 }

@@ -9,7 +9,6 @@ import javax.ws.rs.core.MediaType;
 
 import lejos.pc.comm.NXTCommException;
 import middleware.NXTMiddleware;
-import project.models.Connection;
 import project.models.Light;
 import project.models.Status;
 
@@ -37,7 +36,7 @@ public class NXTService {
      * @throws NXTCommException the nXT comm exception
      */
     public NXTService() throws NXTCommException {
-        this.middleware = new NXTMiddleware();
+        this.middleware = NXTMiddleware.INSTANCE;
     }
 
     /**
@@ -58,7 +57,7 @@ public class NXTService {
      * @param action the action
      */
     @POST
-    @Path("/lightSensor/{action}")
+    @Path("/light/{action}")
     public void toggleLight(@PathParam("action") final String action) {
         if (action.equals("on")) {
             this.middleware.turnOnFloodlight();
@@ -113,17 +112,5 @@ public class NXTService {
     @Produces(MediaType.APPLICATION_JSON)
     public Status status() {
         return new Status(this.middleware.isForwards(), this.middleware.isMoving());
-    }
-
-    /**
-     * Connection.
-     *
-     * @return the connection
-     */
-    @GET
-    @Path("/connection")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Connection connection() {
-        return new Connection(this.middleware.isConnected());
     }
 }
