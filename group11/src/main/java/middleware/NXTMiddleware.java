@@ -1,5 +1,6 @@
 package middleware;
 
+import lejos.nxt.ColorSensor.Color;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
@@ -30,10 +31,26 @@ public class NXTMiddleware {
     /**
      * @return the light value detected by the light sensor
      */
-    public int lightSensor() {
+    public int getLightValue() {
         return new LightSensor(SensorPort.S1).getLightValue();
     }
+    
+    /**
+     * Turn the light sensor off
+     */
+    public void turnOffFloodlight() {
+    	LightSensor ls = new LightSensor(SensorPort.S1);
+    	ls.setFloodlight(false);
+    }
 
+    /**
+     * Turn the light sensor off
+     */
+    public void turnOnFloodlight() {
+    	LightSensor ls = new LightSensor(SensorPort.S1);
+    	ls.setFloodlight(true);
+    }
+    
     /**
      * 
      */

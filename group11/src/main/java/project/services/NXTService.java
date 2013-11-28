@@ -43,9 +43,27 @@ public class NXTService {
     @Path("/lightSensor")
     @Produces(MediaType.APPLICATION_JSON)
     public Light lightSensor() {
-        return new Light(this.middleware.lightSensor());
+        return new Light(this.middleware.getLightValue());
     }
-
+    
+    /**
+     * Turn off the floodlight
+     */
+    @POST
+    @Path("/floodlightOn")
+    public void turnOffFloodlight() {
+    	this.middleware.turnOffFloodlight();
+    }
+    
+    /**
+     * Turn on the floodlight
+     */
+    @POST
+    @Path("/floodlightOff")
+    public void turnOnFloodlight() {
+    	this.middleware.turnOnFloodlight();
+    }
+    
     /**
      * Move the NXT robot motor forwards
      */
