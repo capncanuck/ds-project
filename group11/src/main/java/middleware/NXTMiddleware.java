@@ -1,6 +1,5 @@
 package middleware;
 
-import lejos.nxt.ColorSensor.Color;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
@@ -8,12 +7,10 @@ import lejos.nxt.remote.RemoteMotor;
 import lejos.pc.comm.NXTCommFactory;
 
 /**
- * Used to communicate with an nxt device
- * 
+ * Used to communicate with an nxt device.
+ *
  * @author Khalil Fazal
  * @studentNumber 100425046
- * @author Mitch George
- * @studentNumber 100429078
  * @author Sarim Mahmood
  * @studentNumber 100372299
  * @author Rayhaan Shakeel
@@ -22,51 +19,85 @@ import lejos.pc.comm.NXTCommFactory;
 public class NXTMiddleware {
 
     /**
-     * 
+     * The Constant motor.
      */
-    private static final RemoteMotor motor = Motor.A;
-
-    private static boolean forward = true;
+    private static final RemoteMotor motor;
 
     /**
+     * The Constant lightSensor.
+     */
+    private static final SensorPort lightSensor;
+
+    /**
+     * The motor's current direction.
+     */
+    private static boolean forward;
+
+    static {
+        motor = Motor.A;
+        lightSensor = SensorPort.S1;
+        forward = true;
+    }
+
+    /**
+     * The lightSensor.
+     */
+    private LightSensor ls;
+
+    /**
+     * Start the light sensor.
+     */
+    private void startLightSensor() {
+        if (this.ls == null) {
+            this.ls = new LightSensor(lightSensor);
+        }
+    }
+
+    /**
+     * Gets the light value.
+     *
      * @return the light value detected by the light sensor
      */
     public int getLightValue() {
-        return new LightSensor(SensorPort.S1).getLightValue();
-    }
-    
-    /**
-     * Turn the light sensor off
-     */
-    public void turnOffFloodlight() {
-    	LightSensor ls = new LightSensor(SensorPort.S1);
-    	ls.setFloodlight(false);
+        this.startLightSensor();
+
+        return this.ls.getLightValue();
     }
 
     /**
-     * Turn the light sensor off
+     * Turn the light sensor off.
+     */
+    public void turnOffFloodlight() {
+        this.startLightSensor();
+
+        this.ls.setFloodlight(false);
+    }
+
+    /**
+     * Turn the light sensor off.
      */
     public void turnOnFloodlight() {
-    	LightSensor ls = new LightSensor(SensorPort.S1);
-    	ls.setFloodlight(true);
+        this.startLightSensor();
+
+        this.ls.setFloodlight(true);
     }
-    
+
     /**
-     * 
+     * Forwards.
      */
     public void forwards() {
         NXTMiddleware.forward = true;
     }
 
     /**
-     * 
+     * Backwards.
      */
     public void backwards() {
         NXTMiddleware.forward = false;
     }
 
     /**
-     * 
+     * Start.
      */
     public void start() {
         if (NXTMiddleware.forward) {
@@ -77,28 +108,34 @@ public class NXTMiddleware {
     }
 
     /**
-     * 
+     * Stop.
      */
     public void stop() {
         motor.stop();
     }
 
     /**
-     * @return
+     * Checks if is forwards.
+     *
+     * @return true, if is forwards
      */
     public boolean isForwards() {
         return NXTMiddleware.forward;
     }
 
     /**
-     * @return
+     * Checks if is moving.
+     *
+     * @return true, if is moving
      */
     public boolean isMoving() {
         return motor.isMoving();
     }
 
     /**
-     * @return
+     * Checks if is connected.
+     *
+     * @return true, if is connected
      */
     public boolean isConnected() {
         try {

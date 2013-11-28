@@ -14,6 +14,11 @@ import project.models.Time;
  * Get the current time
  * 
  * @author Khalil Fazal
+ * @studentNumber 100425046
+ * @author Sarim Mahmood
+ * @studentNumber 100372299
+ * @author Rayhaan Shakeel
+ * @studentNumber 100425726
  */
 @Path("time")
 @Produces(MediaType.APPLICATION_JSON)

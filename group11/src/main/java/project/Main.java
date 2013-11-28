@@ -4,11 +4,16 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 /**
- *
  * This class launches the web application in an embedded Jetty container.
  * This is the entry point to your application. The Java command that is used for
  * launching should fire this main method.
- *
+ * 
+ * @author Khalil Fazal
+ * @studentNumber 100425046
+ * @author Sarim Mahmood
+ * @studentNumber 100372299
+ * @author Rayhaan Shakeel
+ * @studentNumber 100425726
  */
 public class Main {
 
@@ -18,6 +23,8 @@ public class Main {
     private static final String webappDirLocation = "src/main/webapp/";
 
     /**
+     * The main method.
+     *
      * @param args unused
      */
     public static void main(final String[] args) {

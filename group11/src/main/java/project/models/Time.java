@@ -10,6 +10,11 @@ import javax.xml.bind.annotation.XmlType;
  * Shows the current time as XML
  * 
  * @author Khalil Fazal
+ * @studentNumber 100425046
+ * @author Sarim Mahmood
+ * @studentNumber 100372299
+ * @author Rayhaan Shakeel
+ * @studentNumber 100425726
  */
 @XmlRootElement
 @XmlType(propOrder = {

@@ -3,6 +3,7 @@ package project.services;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -13,6 +14,8 @@ import project.models.Light;
 import project.models.Status;
 
 /**
+ * The Class NXTService.
+ *
  * @author Khalil Fazal
  * @studentNumber 100425046
  * @author Sarim Mahmood
@@ -24,20 +27,23 @@ import project.models.Status;
 public class NXTService {
 
     /**
-     * the middleware to the NXT
+     * the middleware to the NXT.
      */
     private final NXTMiddleware middleware;
 
     /**
-     * Create a connection to the middleware
-     * @throws NXTCommException 
+     * Create a connection to the middleware.
+     *
+     * @throws NXTCommException the nXT comm exception
      */
     public NXTService() throws NXTCommException {
         this.middleware = new NXTMiddleware();
     }
 
     /**
-     * @return
+     * Light sensor.
+     *
+     * @return the light
      */
     @GET
     @Path("/lightSensor")
@@ -45,27 +51,24 @@ public class NXTService {
     public Light lightSensor() {
         return new Light(this.middleware.getLightValue());
     }
-    
+
     /**
-     * Turn off the floodlight
+     * Toggle light.
+     *
+     * @param action the action
      */
     @POST
-    @Path("/floodlightOn")
-    public void turnOffFloodlight() {
-    	this.middleware.turnOffFloodlight();
+    @Path("/lightSensor/{action}")
+    public void toggleLight(@PathParam("action") final String action) {
+        if (action.equals("on")) {
+            this.middleware.turnOnFloodlight();
+        } else if (action.equals("off")) {
+            this.middleware.turnOffFloodlight();
+        }
     }
-    
+
     /**
-     * Turn on the floodlight
-     */
-    @POST
-    @Path("/floodlightOff")
-    public void turnOnFloodlight() {
-    	this.middleware.turnOnFloodlight();
-    }
-    
-    /**
-     * Move the NXT robot motor forwards
+     * Move the NXT robot motor forwards.
      */
     @POST
     @Path("/forwards")
@@ -74,7 +77,7 @@ public class NXTService {
     }
 
     /**
-     * Move the NXT robot motor backwards
+     * Move the NXT robot motor backwards.
      */
     @POST
     @Path("/backwards")
@@ -82,6 +85,9 @@ public class NXTService {
         this.middleware.backwards();
     }
 
+    /**
+     * Start.
+     */
     @POST
     @Path("/start")
     public void start() {
@@ -89,7 +95,7 @@ public class NXTService {
     }
 
     /**
-     * Stop the NXT Motor
+     * Stop the NXT Motor.
      */
     @POST
     @Path("/stop")
@@ -97,6 +103,11 @@ public class NXTService {
         this.middleware.stop();
     }
 
+    /**
+     * Status.
+     *
+     * @return the status
+     */
     @GET
     @Path("/status")
     @Produces(MediaType.APPLICATION_JSON)
@@ -104,6 +115,11 @@ public class NXTService {
         return new Status(this.middleware.isForwards(), this.middleware.isMoving());
     }
 
+    /**
+     * Connection.
+     *
+     * @return the connection
+     */
     @GET
     @Path("/connection")
     @Produces(MediaType.APPLICATION_JSON)
