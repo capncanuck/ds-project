@@ -15,9 +15,9 @@ Instructions
 1. Clone to git folder
 2. In eclipse, create new maven project
 3. Change the directory to `git/ds-project/group-11`
-4. Add NXT libraries
+4. Back in the terminal, add NXT libraries
 
-  `cp -r git/ds-project/group-11/lib/native/ ~/.m2/repository/lejos/nxt/nxt/0.0.1-SNAPSHOT/`
+  `cp -r ~/git/ds-project/group-11/lib/native/ ~/.m2/repository/lejos/nxt/nxt/0.0.1-SNAPSHOT/`
 5. While in the same directory as `pom.xml`, run the following commands:
   Linux: `mvn install:install-file -Dfile=lib/pccomm.jar -DgroupId=lejos.nxt -DartifactId=nxt -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dsources=lib/src/pccomm-src.zip`
   Windows Power Shell: `mvn install:install-file '-Dfile=lib/pccomm.jar' '-DgroupId=lejos.nxt' '-DartifactId=nxt' '-Dversion=0.0.1-SNAPSHOT' '-Dpackaging=jar' '-Dsources=lib/src/pccomm-src.zip'`
