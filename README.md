@@ -21,6 +21,7 @@ Instructions
 7. Add NXT libraries
   1. `cp -r git/ds-project/group-11/lib/native/ ~/.m2/repository/lejos/nxt/nxt/0.0.1-SNAPSHOT/`
 8. While in the same directory as `pom.xml`, run the following commands:
-  1. `mvn install:install-file -Dfile=lib/pccomm.jar -DgroupId=lejos.nxt -DartifactId=nxt -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dsources=lib/src/pccomm-src.zip`
+  1. Linux: `mvn install:install-file -Dfile=lib/pccomm.jar -DgroupId=lejos.nxt -DartifactId=nxt -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dsources=lib/src/pccomm-src.zip`
+  Windows Power Shell: `mvn install:install-file '-Dfile=lib/pccomm.jar' '-DgroupId=lejos.nxt' '-DartifactId=nxt' '-Dversion=0.0.1-SNAPSHOT' '-Dpackaging=jar' '-Dsources=lib/src/pccomm-src.zip'`
   2. `mvn clean install`
   3. `mvn exec:java -Dexec.mainClass="project.Main"`
