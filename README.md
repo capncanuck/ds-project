@@ -19,6 +19,7 @@ Instructions
 
   `cp -r ~/git/ds-project/group-11/lib/native/ ~/.m2/repository/lejos/nxt/nxt/0.0.1-SNAPSHOT/`
 5. While in the same directory as `pom.xml`, run the following commands:
+
   Linux: `mvn install:install-file -Dfile=lib/pccomm.jar -DgroupId=lejos.nxt -DartifactId=nxt -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dsources=lib/src/pccomm-src.zip`
   Windows Power Shell: `mvn install:install-file '-Dfile=lib/pccomm.jar' '-DgroupId=lejos.nxt' '-DartifactId=nxt' '-Dversion=0.0.1-SNAPSHOT' '-Dpackaging=jar' '-Dsources=lib/src/pccomm-src.zip'`
 
